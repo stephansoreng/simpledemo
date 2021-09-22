@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: simpledemo-deployment
+  labels:
+    app: simpledemo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: simpledemo
+  template:
+    metadata:
+      labels:
+        app: simpledemo
+    spec:
+      containers:
+        - name: simpledemo
+          image: akstestregistry1001.azurecr.io/simpledemo
+          ports:
+            - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: simpledemo-loadbalancer-service
+  labels:
+    app: simpledemo
+spec:
+  type: LoadBalancer
+  selector:
+    app: simpledemo
+  ports:
+    - port: 80
+      targetPort: 80
