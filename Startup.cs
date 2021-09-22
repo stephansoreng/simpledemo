@@ -32,7 +32,7 @@ namespace samplecontainerapp
             {
                 endpoints.MapGet("/", async context =>
                 {
-                    await context.Response.WriteAsync("Hello World from " + System.Environment.MachineName);
+                    await context.Response.WriteAsync("Hello World from " + System.Environment.MachineName + "!");
                 });
             });
         }
